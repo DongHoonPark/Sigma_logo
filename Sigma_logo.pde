@@ -2,6 +2,8 @@ import processing.serial.*;
 
 Serial myport;
 
+final float GUAGE_ANGLE_MAX = 0.32 * PI;
+
 float SigmaMouthAngle = PI/4;
 float SigmaGuageAngle = 0;
 float SigmaTurnAngle = 0;
@@ -74,9 +76,8 @@ void drawUnitSigmaIcon(float mouthAngle, float meterAngle) {
   noStroke();
   strokeWeight(0);
   fill(0, 0, 0);
-  
-  arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, -PI + mouthAngle/2, -0.16*PI);
-  arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, 0.16*PI, PI - mouthAngle/2);
+  arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, -PI + mouthAngle/2, -GUAGE_ANGLE_MAX/2);
+  arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, GUAGE_ANGLE_MAX/2, PI - mouthAngle/2);
 
   fill(255, 255, 255);
   arc(0, 0, UNIT_DIAMETER * 0.8f, UNIT_DIAMETER * 0.8f, -PI + mouthAngle/2, PI - mouthAngle/2);
