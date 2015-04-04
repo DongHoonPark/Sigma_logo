@@ -89,22 +89,22 @@ void drawUnitSigmaIcon(float mouthAngle, float meterAngle) {
   ellipse(0, -0.45 * UNIT_RADIUS, 0.25*UNIT_RADIUS, 0.25*UNIT_RADIUS);
 
   for (int i = 0; i < 10; ++i) {
+     if (i%3 != 0) {
+      fill(0, 0, 0);
+      arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, -0.13*PI + 0.08667*PI*i/3 - 0.005*PI, -0.13*PI + 0.08667*PI*i/3 + 0.005*PI);
+    }
+  }
+  fill(255, 255, 255);
+  arc(0, 0, UNIT_DIAMETER * 0.9, UNIT_DIAMETER * 0.9, -0.13*PI + 0.08667*PI*0/3 - 0.009*PI, -0.13*PI + 0.08667*PI*9/3 + 0.009*PI);
+  
+  for (int i = 0; i < 10; i++) {
     if (i%3 == 0) {
       fill(0, 0, 0);
       arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, -0.13*PI + 0.08667*PI*i/3 - 0.01*PI, -0.13*PI + 0.08667*PI*i/3 + 0.01*PI);
-      noStroke();
-      fill(255, 255, 255);
-      arc(0, 0, UNIT_DIAMETER * 0.8, UNIT_DIAMETER * 0.8, -0.13*PI + 0.08667*PI*i/3 - 0.02*PI, -0.13*PI + 0.08667*PI*i/3 + 0.02*PI);
-      noStroke();
-    } else {
-      fill(0, 0, 0);
-      arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, -0.13*PI + 0.08667*PI*i/3 - 0.005*PI, -0.13*PI + 0.08667*PI*i/3 + 0.005*PI);
-      noStroke();
-      fill(255, 255, 255);
-      arc(0, 0, UNIT_DIAMETER * 0.9, UNIT_DIAMETER * 0.9, -0.13*PI + 0.08667*PI*i/3 - 0.009*PI, -0.13*PI + 0.08667*PI*i/3 + 0.009*PI);
-      noStroke();
     }
   }
+  fill(255, 255, 255);
+  arc(0, 0, UNIT_DIAMETER * 0.8, UNIT_DIAMETER * 0.8, -0.13*PI + 0.08667*PI*0/3 - 0.02*PI, -0.13*PI + 0.08667*PI*9/3 + 0.02*PI);
 
   stroke(0, 0, 0);
   strokeWeight(0);
