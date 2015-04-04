@@ -73,6 +73,9 @@ void drawSigmaIcon(float x, float y, float rad, float mouthAngle, float meterAng
 void drawUnitSigmaIcon(float mouthAngle, float meterAngle) {
   final float UNIT_RADIUS = 1.0f;
   final float UNIT_DIAMETER = UNIT_RADIUS * 2;
+  
+  final float LINE_WIDTH_BOLD = 0.2f;
+  
   noStroke();
   strokeWeight(0);
   fill(0, 0, 0);
@@ -80,7 +83,8 @@ void drawUnitSigmaIcon(float mouthAngle, float meterAngle) {
   arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, GUAGE_ANGLE_MAX/2, PI - mouthAngle/2);
 
   fill(255, 255, 255);
-  arc(0, 0, UNIT_DIAMETER * 0.8f, UNIT_DIAMETER * 0.8f, -PI + mouthAngle/2, PI - mouthAngle/2);
+  float innerDiameter = UNIT_DIAMETER * (1.0f - LINE_WIDTH_BOLD);
+  arc(0, 0, innerDiameter, innerDiameter, -PI + mouthAngle/2, PI - mouthAngle/2);
   fill(0, 0, 0);
   ellipse(0, -0.45 * UNIT_RADIUS, 0.25*UNIT_RADIUS, 0.25*UNIT_RADIUS);
 
@@ -109,7 +113,7 @@ void drawUnitSigmaIcon(float mouthAngle, float meterAngle) {
            0.1*UNIT_RADIUS*cos(meterAngle-PI/2), 0.1*UNIT_RADIUS*sin(meterAngle-PI/2), 
            0.1*UNIT_RADIUS*cos(meterAngle+PI/2), 0.1*UNIT_RADIUS*sin(meterAngle+PI/2));
 
-  strokeWeight(0.2*UNIT_RADIUS);
+  strokeWeight(LINE_WIDTH_BOLD);
 
   line(0.9*UNIT_RADIUS*cos(-PI + mouthAngle/2), UNIT_RADIUS*0.9*sin(-PI + mouthAngle/2), 0, 0);  
   line(0.9*UNIT_RADIUS*cos(PI - mouthAngle/2), UNIT_RADIUS*0.9*sin(PI - mouthAngle/2), 0, 0);
