@@ -25,6 +25,7 @@ void draw() {
   drawSigmaIcon(SigmaXpos, SigmaYpos, 30, SigmaMouthAngle, SigmaGuageAngle, SigmaTurnAngle);
   animationEnableSigmaIcon(PI/2, PI/6, PI/8, -PI/8);
 }
+
 void keyPressed() {
   if (key == CODED) 
   {
@@ -63,38 +64,38 @@ void drawSigmaIcon(float x, float y, float rad, float mouthAngle, float meterAng
   translate(x, y);
   scale(rad);
   rotate(turnAngle);
-  _oldDrawSigmaIcon(0, 0, 1, mouthAngle, meterAngle, 0);
+  drawUnitSigmaIcon(mouthAngle, meterAngle);
   popMatrix();
 }
 
-
-void _oldDrawSigmaIcon(float x, float y, float rad, float mouthAngle, float meterAngle, float turnAngle) {
-
+void drawUnitSigmaIcon(float mouthAngle, float meterAngle) {
+  final float UNIT_DIAMETER = 2.0f;
   noStroke();
   strokeWeight(0);
   fill(0, 0, 0);
-  arc(x, y, rad*2, rad*2, -PI + mouthAngle/2+turnAngle, -0.16*PI+turnAngle);
-  arc(x, y, rad*2, rad*2, 0.16*PI+turnAngle, PI - mouthAngle/2+turnAngle );
+  
+  arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, -PI + mouthAngle/2, -0.16*PI);
+  arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, 0.16*PI, PI - mouthAngle/2);
 
   fill(255, 255, 255);
-  arc(x, y, rad*1.6, rad*1.6, -PI + mouthAngle/2+turnAngle, PI - mouthAngle/2+turnAngle);
+  arc(0, 0, UNIT_DIAMETER*0.8, UNIT_DIAMETER*0.8, -PI + mouthAngle/2, PI - mouthAngle/2);
   fill(0, 0, 0);
-  ellipse(x+0.45*rad*cos(turnAngle-PI/2), y+0.45*rad*sin(turnAngle-PI/2), 0.25*rad, 0.25*rad);
+  ellipse(0, -0.45 * UNIT_DIAMETER/2, 0.25*UNIT_DIAMETER/2, 0.25*UNIT_DIAMETER/2);
 
   for (int i = 0; i < 10; ++i) {
     if (i%3 == 0) {
       fill(0, 0, 0);
-      arc(x, y, rad*2, rad*2, -0.13*PI + 0.08667*PI*i/3 - 0.01*PI+turnAngle, -0.13*PI + 0.08667*PI*i/3 + 0.01*PI+turnAngle);
+      arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, -0.13*PI + 0.08667*PI*i/3 - 0.01*PI, -0.13*PI + 0.08667*PI*i/3 + 0.01*PI);
       noStroke();
       fill(255, 255, 255);
-      arc(x, y, rad*1.6, rad*1.6, -0.13*PI + 0.08667*PI*i/3 - 0.02*PI+turnAngle, -0.13*PI + 0.08667*PI*i/3 + 0.02*PI+turnAngle);
+      arc(0, 0, UNIT_DIAMETER * 0.8, UNIT_DIAMETER * 0.8, -0.13*PI + 0.08667*PI*i/3 - 0.02*PI, -0.13*PI + 0.08667*PI*i/3 + 0.02*PI);
       noStroke();
     } else {
       fill(0, 0, 0);
-      arc(x, y, rad*2, rad*2, -0.13*PI + 0.08667*PI*i/3 - 0.005*PI+turnAngle, -0.13*PI + 0.08667*PI*i/3 + 0.005*PI+turnAngle);
+      arc(0, 0, UNIT_DIAMETER, UNIT_DIAMETER, -0.13*PI + 0.08667*PI*i/3 - 0.005*PI, -0.13*PI + 0.08667*PI*i/3 + 0.005*PI);
       noStroke();
       fill(255, 255, 255);
-      arc(x, y, rad*1.8, rad*1.8, -0.13*PI + 0.08667*PI*i/3 - 0.009*PI+turnAngle, -0.13*PI + 0.08667*PI*i/3 + 0.009*PI+turnAngle);
+      arc(0, 0, UNIT_DIAMETER * 0.9, UNIT_DIAMETER * 0.9, -0.13*PI + 0.08667*PI*i/3 - 0.009*PI, -0.13*PI + 0.08667*PI*i/3 + 0.009*PI);
       noStroke();
     }
   }
@@ -102,13 +103,16 @@ void _oldDrawSigmaIcon(float x, float y, float rad, float mouthAngle, float mete
   stroke(0, 0, 0);
   strokeWeight(0);
   fill(255, 0, 0);
-  triangle(x+0.7*rad*cos(meterAngle+turnAngle), y+0.7*rad*sin(meterAngle+turnAngle), x+0.1*rad*cos(meterAngle-PI/2+turnAngle), y+0.1*rad*sin(meterAngle-PI/2+turnAngle), x+0.1*rad*cos(meterAngle+PI/2+turnAngle), y+0.1*rad*sin(meterAngle+PI/2+turnAngle));
+  triangle(0.7*UNIT_DIAMETER/2*cos(meterAngle), 0.7*UNIT_DIAMETER/2*sin(meterAngle), 
+           0.1*UNIT_DIAMETER/2*cos(meterAngle-PI/2), 0.1*UNIT_DIAMETER/2*sin(meterAngle-PI/2), 
+           0.1*UNIT_DIAMETER/2*cos(meterAngle+PI/2), 0.1*UNIT_DIAMETER/2*sin(meterAngle+PI/2));
 
-  strokeWeight(0.2*rad);
+  strokeWeight(0.2*UNIT_DIAMETER/2);
 
-  line(x+0.9*rad*cos(-PI + mouthAngle/2+turnAngle), y+rad*0.9*sin(-PI + mouthAngle/2+turnAngle), x, y);	
-  line(x+0.9*rad*cos(PI - mouthAngle/2+turnAngle), y+rad*0.9*sin(PI - mouthAngle/2+turnAngle), x, y);
+  line(0.9*UNIT_DIAMETER/2*cos(-PI + mouthAngle/2), UNIT_DIAMETER/2*0.9*sin(-PI + mouthAngle/2), 0, 0);  
+  line(0.9*UNIT_DIAMETER/2*cos(PI - mouthAngle/2), UNIT_DIAMETER/2*0.9*sin(PI - mouthAngle/2), 0, 0);
 }
+
 void animationEnableSigmaIcon(float mouthMaxAngle, float mouthMinAngle, float guageMaxAngle, float guageMinAngle) {
   SigmaMouthAngle += increment_mouth;
   SigmaGuageAngle += increment_guage;
