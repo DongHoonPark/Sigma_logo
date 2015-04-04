@@ -59,6 +59,16 @@ void keyPressed() {
 }
 
 void drawSigmaIcon(float x, float y, float rad, float mouthAngle, float meterAngle, float turnAngle) {
+  pushMatrix();
+  translate(x, y);
+  scale(rad);
+  rotate(turnAngle);
+  _oldDrawSigmaIcon(0, 0, 1, mouthAngle, meterAngle, 0);
+  popMatrix();
+}
+
+
+void _oldDrawSigmaIcon(float x, float y, float rad, float mouthAngle, float meterAngle, float turnAngle) {
 
   noStroke();
   strokeWeight(0);
