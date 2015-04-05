@@ -52,3 +52,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Processing built-tmp
+/build-tmp/
